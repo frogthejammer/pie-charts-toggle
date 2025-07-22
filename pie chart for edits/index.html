@@ -1,0 +1,84 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Imperial County DA • Case Dashboard</title>
+
+  <!-- vendor libs -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/alasql/dist/alasql.min.js"></script>
+
+  <!-- app styles / script -->
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <!-- banner -->
+  <section class="hero">
+    <h1>Imperial County DA • Case Dashboard</h1>
+  </section>
+
+  <!-- controls -->
+  <header class="controls">
+   <label>Measure
+  <select id="metric">
+    <!-- counts every row, reviewed or not -->
+    <option value="all_cases">All cases received</option>
+
+    <!-- reviewed‑only submenu -->
+    <optgroup label="Decisions after case review">
+      <option value="all_reviewed">All reviewed cases</option>
+      <option value="Prosecuted">Prosecuted</option>
+      <option value="Diverted pre‑charge">Diverted (pre‑charge)</option>
+      <option value="Diverted post‑charge">Diverted (post‑charge)</option>
+      <option value="Declined">Declined / No‑file</option>
+    </optgroup>
+
+    <!-- NEW diverted submenu -->
+    <optgroup label="Cases diverted">
+      <option value="all_diverted">Cases diverted (total)</option>
+      <option value="Mental Health Diversion (MHD)">Mental Health Diversion (MHD)</option>
+      <option value="Drug Diversion Program">Drug Diversion Program</option>
+      <option value="Restorative Justice Program">Restorative Justice Program</option>
+      <option value="Other">Other</option>
+    </optgroup>
+  </select>
+</label>
+
+
+    <label>Data range
+      <select id="range">
+        <option value="last12">Last 12 months</option>
+        <option value="monthly">Monthly — all years</option>
+        <option value="quarterly">Quarterly — all years</option>
+        <option value="annual">Annual — all years</option>
+      </select>
+    </label>
+
+    <label>Breakdown by
+      <select id="dimension"></select>
+    </label>
+  
+
+   <!-- ✅ New toggle styled like other controls -->
+  <label class="checkmark-toggle">
+    <input type="checkbox" id="pieToggle" checked />
+    <span>Use Pie Chart Mode</span>
+  </label>
+</header>
+
+  <div id="compareSection" style="display: none; margin-top: 40px;">
+  <h2 style="text-align: center;">Comparison Chart</h2>
+  <div class="large-chart-container">
+    <canvas id="largeChart" height="150"></canvas>
+  </div>
+</div>
+  <!-- chart grid -->
+  <main class="grid" id="chartGrid"></main>
+
+
+</body>
+</html>

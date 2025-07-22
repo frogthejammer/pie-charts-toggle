@@ -1,0 +1,48 @@
+/* ––––– base ––––– */
+*{box-sizing:border-box}
+body{margin:0;font-family:'Segoe UI',sans-serif;background:hsl(0,0%,95%)}
+
+/* hero */
+.hero{background:linear-gradient(90deg,#f5f7fa,#e8ecf1);padding:56px 32px 24px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.hero h1{margin:0;font-size:2.25rem;letter-spacing:-.5px;color:#222}
+
+/* control bar */
+.controls{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:1rem;margin:30px auto 48px;padding:1rem 2rem;max-width:920px;background:#fff;border-radius:12px;box-shadow:0 4px 14px rgba(0,0,0,.1)}
+select{padding:.6rem 1rem;border:1px solid #ccc;border-radius:6px;font-size:1rem;background:#fff;cursor:pointer;transition:.25s}
+select:hover{background:#f0f0f0;border-color:#888}
+select:focus{outline:none;box-shadow:0 0 0 3px rgba(0,123,255,.25)}
+
+/* grid */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:32px;padding:0 32px 56px}
+
+/* card */
+.chart-box{background:#fff;border-radius:14px;padding:24px 24px 20px;box-shadow:0 6px 20px rgba(0,0,0,.1);display:flex;flex-direction:column;transition:.25s}
+.chart-box:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.15)}
+.chart-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.chart-title{font-size:1rem;font-weight:600;color:#333}
+.chart-month{font-size:1rem;font-weight:700;color:#444;min-width:56px;text-align:right}
+.chart-number{
+  font-size:1.5rem;
+  font-weight:700;
+  color:#111;
+  margin-bottom:8px;
+  min-height:36px;      /* reserves space for the hover text */
+}
+
+.range-labels{display:flex;justify-content:space-between;margin-top:6px;font-size:.7rem;color:#888}
+
+
+.large-chart-container {
+    display: flex;
+    justify-content: center;
+    padding: 16px
+}
+#largeChart {
+    display: block;
+    width: 100%;
+    min-height: 550px !important; 
+    background-color: #ffff;
+    box-shadow: 8px;
+    border-radius: 8px;
+}
+
