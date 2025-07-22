@@ -4,6 +4,22 @@ const COLORS = [
   '#000', '#e91e63', '#ff9800', '#ffeb3b', '#4caf50', '#00bcd4', '#9c27b0', '#f44336', 
   '#3f51b5', '#2196f3', '#795548'
 ];
+
+const METRIC_LABELS = {
+  all_cases: 'ALL',
+  all_reviewed: 'Reviewed',
+  all_diverted: 'Diverted',
+  Prosecuted: 'Prosecuted',
+  'Diverted pre‑charge': 'Diverted (Pre‑charge)',
+  'Diverted post‑charge': 'Diverted (Post‑charge)',
+  Declined: 'Declined',
+  'Mental Health Diversion (MHD)': 'MHD',
+  'Drug Diversion Program': 'Drug Diversion',
+  'Restorative Justice Program': 'Restorative Justice',
+  Other: 'Other'
+};
+
+
 const DIVERSION_TYPES = [
   'Mental Health Diversion (MHD)',
   'Drug Diversion Program',
@@ -100,7 +116,7 @@ function build() {
   const dim    = document.getElementById('dimension').value;
   const metric = document.getElementById('metric').value;
   const pieChartEnabled = document.getElementById('pieToggle').checked;
-  const pieMode = pieChartEnabled && (metric === 'all_cases' || DIVERSION_TYPES.includes(metric) || DECISION_TYPES.includes(metric));
+  const pieMode = pieChartEnabled && (metric === 'all_cases' || metric === 'all_reviewed' || metric === 'all_diverted' || DIVERSION_TYPES.includes(metric) || DECISION_TYPES.includes(metric));
 
   const buckets = [];
   if (range === 'last12') {
@@ -319,7 +335,8 @@ function renderLinePie(buckets, lineData, groupCounts, metricName) {
 grid.innerHTML = `
   <div class="chart-box" style="flex:1 1 100%;">
     <div class="chart-head">
-      <div class="chart-title">${metricName} (ALL)</div>
+      <div class="chart-title">${METRIC_LABELS[metricName] || metricName} </div>
+
       <div class="chart-month" id="lineMonth"></div>
     </div>
     <div class="chart-number" id="lineValue">${lineData.at(-1)} cases</div>
@@ -348,7 +365,7 @@ grid.innerHTML = `
     data: {
       labels,
       datasets: [{
-        label: metricName,
+        label: METRIC_LABELS[metricName] || metricName,
         data: lineData,
         borderColor: '#000',
         backgroundColor: '#000',
